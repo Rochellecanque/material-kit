@@ -28,6 +28,8 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+let projects = []; 
+
 app.post('/invite', (req, res) => {
     const { email } = req.body;
     const mailOptions = {
@@ -47,9 +49,15 @@ app.post('/invite', (req, res) => {
 });
 
 // Task 2 Routes
+// Get all projects
 app.get('/projects', async (req, res) => {
-    const projects = await Project.findAll();
-    res.json(projects);
+    try {
+        // Fetch projects from a database or another source
+        res.json(projects);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to retrieve projects' });
+    }
 });
 
 //app.post('/projects', async (req, res) => {
@@ -57,10 +65,27 @@ app.get('/projects', async (req, res) => {
 //    res.json(project);
 //});
 
-app.post('/projects', (req, res) => {
-    // Handle the POST request here
-    res.status(200).json({ message: 'Project created successfully' });
-  });
+// app.post('/projects', async (req, res) => {
+//     try {
+//         const project = await Project.create(req.body);
+//         res.status(201).json(project);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: 'Failed to create project' });
+//     }
+// });
+
+// Create a new project
+app.post('/projects', async (req, res) => {
+    try {
+        const project = await Project.create(req.body);
+        projects.push(project); // Push the newly created project into the projects array
+        res.status(201).json(project);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to create project' });
+    }
+});
 
 app.get('/projects/:id', async (req, res) => {
     const project = await Project.findByPk(req.params.id);
@@ -73,17 +98,49 @@ app.use((err, req, res, next) => {
   });
   
 
-app.put('/projects/:id', async (req, res) => {
-    const project = await Project.findByPk(req.params.id);
-    await project.update(req.body);
-    res.json(project);
+//   app.put('/projects/:id', async (req, res) => {
+//     const project = await Project.findByPk(req.params.id);
+//     if (project) {
+//         await project.update(req.body);
+//         res.json(project);
+//     } else {
+//         res.status(404).json({ error: 'Project not found' });
+//     }
+// })
+
+// Update project by ID
+app.put('/projects/:id', (req, res) => {
+    const projectId = parseInt(req.params.id);
+    const index = projects.findIndex(p => p.id === projectId);
+    if (index !== -1) {
+        projects[index] = req.body;
+        res.json(projects[index]);
+    } else {
+        res.status(404).json({ error: 'Project not found' });
+    }
 });
 
-app.delete('/projects/:id', async (req, res) => {
-    const project = await Project.findByPk(req.params.id);
-    await project.destroy();
-    res.json({ message: 'Project deleted' });
+// Delete project by ID
+app.delete('/projects/:id', (req, res) => {
+    const projectId = parseInt(req.params.id);
+    const index = projects.findIndex(p => p.id === projectId);
+    if (index !== -1) {
+        projects.splice(index, 1);
+        res.sendStatus(200);
+    } else {
+        res.status(404).json({ error: 'Project not found' });
+    }
 });
+
+// app.delete('/projects/:id', async (req, res) => {
+//     const project = await Project.findByPk(req.params.id);
+//     if (project) {
+//         await project.destroy();
+//         res.json({ message: 'Project deleted' });
+//     } else {
+//         res.status(404).json({ error: 'Project not found' });
+//     }
+// });
 
 app.get('/projects/:projectId/tasks', async (req, res) => {
     const tasks = await Task.findAll({ where: { projectId: req.params.projectId } });
