@@ -23,4 +23,11 @@ const Project = sequelize.define('Project', {
     }
 });
 
+Project.associate = function(models) {
+    Project.hasMany(models.Task, {
+        foreignKey: 'projectId',
+        as: 'tasks'
+    });
+};
+
 module.exports = Project;
