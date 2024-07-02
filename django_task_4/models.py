@@ -10,14 +10,14 @@ class ParentModel(models.Model):
     owner = models.CharField(max_length=100, blank=False)  # Non-empty validation
     owner_email = models.EmailField(
         validators=[EmailValidator()],
-        blank=False,  # Non-empty validation
-        default='default@example.com'
+        blank=False  # Non-empty validation
+       # default='default@example.com'
     )
     number = models.CharField(
         max_length=100,
         validators=[RegexValidator(r'^\d+$', message='This field must be numeric.')],
-        blank=False,  # Non-empty 
-        default='08888345'
+        blank=False  # Non-empty 
+        #default='08888345'
     )
 
     def __str__(self):
