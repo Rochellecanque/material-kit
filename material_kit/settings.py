@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'material_kit',
-    'app_name',
+    'django_task_4',
     # Add your other apps here
 ]
 
@@ -66,3 +66,5 @@ DATABASES = {
 STATIC_URL = '/static/'
 
 SECRET_KEY = '&h0#h5b3#(=*y@+#m(5jd2c-kjro*8+_(llzlazjw39avp5=je'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
