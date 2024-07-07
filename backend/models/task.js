@@ -8,7 +8,7 @@ const Task = sequelize.define('Task', {
         allowNull: false
     },
     description: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     },
     dueDate: {
         type: DataTypes.DATE
@@ -16,6 +16,10 @@ const Task = sequelize.define('Task', {
     completed: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+    },
+    projectId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 });
 
