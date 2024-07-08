@@ -4,25 +4,45 @@
 
     - Task 1 and 2 - `task2` branch
         - run `http-server`
+        - http://127.0.0.1:8082/
     - Task 3 - `task3` and `task 3a`
+    1. task 3.1 - branch `task3`
         - cd to backend folder
-        - run node server.js
+        - run `node server.js`
+          ##
         - open another terminal
-        - cd to frontend
         - run http-server
+        - http://127.0.0.1:8082/team.html
+     
+          -----
+     
+      
+    2. task 3.1 - branch `task3`
+        - cd to backend folder
+        - run `node server.js`
+         ## 
+          
+        - open another terminal
+        - run http-server
+        - http://127.0.0.1:8082/team.html
     - Task 4 - `task4`
+        - cd back to material-kit
+        - run python manage.py runserver
+        - http://127.0.0.1:8000
+
     - Task 5 and 6 - `task6`
         - run `python manage.py runserver`
+        - http://127.0.0.1:8000/admin/django_task_4/
 
 
 ##  Task 1 – Clone any free starter kit from https://www.creative-tim.com/
 
-![Task 1](/submissions-lab2/images/task1-chosen-kit.png) 
+![Task 1](/submission-lab2/images/task1-chosen-kit.png) 
 
 
 ## Task 2 – Setup that starter kit and make it run on your local server 
 
-![Task 2](/submissions-lab2/images/task2-materialkit.png) 
+![Task 2](/submission-lab2/images/task2-materialkit.png) 
 
 
 ##   Task 3 – In this starter kit, create any two of the following features:
@@ -34,16 +54,16 @@
 
 ##  Task 4 – Setup Django admin for Task 3 and the ability to add foreign key models from the parent model 
 
-![Task 4](/submissions-lab2/images/task4-fk-parent.png) 
+![Task 4](/submission-lab2/images/task4-fk-parent.png) 
 
 
 ##  Task Task 5 – Add an Owner field, and Owner Email Address in your Task 3, and make sure there is an email address field 
 
-![Task 5](/submissions-lab2/images/task5-owner-email.png) 
+![Task 5](/submission-lab2/images/task5-owner-email.png) 
 
 
 ##  Task 6 – Create validations for fields of your choosing in Task 3. There should be validations should be for email, non-empty, and numeric
 
-![Task 6](/submissions-lab2/images/task6-validations.png) 
+![Task 6](/submission-lab2/images/task6-validations.png) 
 
 
